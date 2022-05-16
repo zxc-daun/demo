@@ -104,6 +104,20 @@ public class WebController {
         return "update-user";
     }
 
+    @GetMapping("/error")
+    public String error(){
+        return "error";
+    }
+
+    @GetMapping("/books")
+    public String books(){ return "books";}
+
+    @GetMapping("/calculator")
+    public String calculator() {return "calculator";}
+
+    @GetMapping("/game")
+    public String game(){return "game";}
+
     private void deleteById(Long id) {
          repository.deleteById(id);
     }

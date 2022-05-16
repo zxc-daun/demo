@@ -31,7 +31,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/registration").permitAll()
+                .antMatchers("/","/css/**", "/js/**", "/registration").permitAll()
+                .antMatchers("/edit/**","/delete/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPER_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -52,4 +53,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+
 }
